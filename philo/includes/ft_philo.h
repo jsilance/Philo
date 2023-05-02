@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/04/29 01:29:47 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/03 00:32:27 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef struct s_philo
 	int				nb_to_eat;
 	int				id;
 	pthread_mutex_t	left_fork;
-	// int				left_fork;
 	struct s_philo	*philos;
+	pthread_mutex_t	*printing;
+	int				*death;
 }					t_philo;
 
 typedef struct s_philo_param
@@ -42,6 +43,8 @@ typedef struct s_philo_param
 	int				nb_to_eat;
 	pthread_t		*thread_p;
 	t_philo			*philos;
+	pthread_mutex_t	printing;
+	int				death;
 }					t_philo_param;
 
 int					ft_philo_param_init(t_philo_param *philo, char **argv,
@@ -53,5 +56,7 @@ void				*ft_philosophe(void *ptr);
 t_philo				*ft_philo_create(t_philo_param *philo_param);
 
 int					ft_philo_destructor(t_philo_param *ptr);
+
+int					ft_watchdog(int *ptr);
 
 #endif

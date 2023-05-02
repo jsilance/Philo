@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 02:32:58 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/04/28 23:43:56 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:59:42 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_philo_param_init(t_philo_param *philo, char **argv, int argc)
 	if (first_layer_check(argc) == -1 || second_layer_check(argc, argv) == -1)
 		return (-1);
 	*philo = (t_philo_param){ft_atoi(argv[1]), ft_atoi(argv[2]),
-		ft_atoi(argv[3]), ft_atoi(argv[4]), 0, NULL, NULL};
+		ft_atoi(argv[3]), ft_atoi(argv[4]), 0, NULL, NULL, {{0}}, 0};
 	if (argc == 6)
 		philo->nb_to_eat = ft_atoi(argv[5]);
 	if (philo->nb_philo < 1)
@@ -51,5 +51,6 @@ int	ft_philo_param_init(t_philo_param *philo, char **argv, int argc)
 	philo->thread_p = (pthread_t *)malloc(sizeof(pthread_t) * philo->nb_philo);
 	if (!philo->thread_p)
 		return (-1);
+	pthread_mutex_init(&philo->printing, NULL);
 	return (0);
 }

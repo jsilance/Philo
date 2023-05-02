@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/04/29 01:07:49 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/02 23:59:50 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_philo_destructor(t_philo_param *ptr)
 		pthread_mutex_destroy(&ptr->philos[i++].left_fork);
 	if (ptr->philos)
 		pthread_mutex_destroy(&ptr->philos[i++].left_fork);
+	pthread_mutex_destroy(&ptr->printing);
 	free(ptr->philos);
 	free(ptr->thread_p);
 	return (0);
@@ -32,7 +33,7 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 	int		i;
 
 	i = 0;
-	ptr = (t_philo *)malloc(sizeof(t_philo) * philo_param->nb_philo + 1);
+	ptr = (t_philo *)malloc(sizeof(t_philo) * (philo_param->nb_philo + 1));
 	if (!ptr)
 		return (NULL);
 	while (i < philo_param->nb_philo)
@@ -44,6 +45,8 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 		ptr[i].time_to_sleep = philo_param->time_to_sleep;
 		ptr[i].nb_to_eat = philo_param->nb_to_eat;
 		ptr[i].philos = philo_param->philos;
+		ptr[i].printing = &philo_param->printing;
+		ptr[i].death = &philo_param->death;
 		i++;
 	}
 	ptr[i].id = 0;
