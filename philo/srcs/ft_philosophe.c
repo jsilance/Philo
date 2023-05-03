@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:23:03 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/03 00:45:49 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:14:55 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ void	*ft_philosophe(void *ptr)
 			break ;
 		if (state == 1)
 		{
+			if (philo->nb_to_eat > 0)
+				philo->nb_to_eat--;
+			else if (philo->nb_to_eat == 0)
+				break ;
 			if (philo_eat(philo, &last_eat, &end, &right_fork) == -1)
 				break ;
 			state = 2;

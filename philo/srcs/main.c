@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:12:48 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/03 00:32:17 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/04 00:38:21 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	int				i;
 
 	i = -1;
-	// setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stdout, NULL, _IONBF, 0);
 	if (ft_philo_param_init(&philo, argv, argc) == -1)
 		return (1);
 	philo.philos = ft_philo_create(&philo);
@@ -39,12 +39,15 @@ int	main(int argc, char **argv)
 		if (pthread_create(&philo.thread_p[i], NULL, ft_philosophe,
 				(void *)&philo.philos[i]))
 			break ;
-		usleep(100);
+		usleep(philo.nb_philo * 1000);
 	}
 	i = 0;
-	while (i < philo.nb_philo)
+	while (i < philo.nb_philo && philo.nb_to_eat != -1)
+		pthread_join(philo.thread_p[i++], NULL);
+	while (i < philo.nb_philo && philo.nb_to_eat == -1)
 		pthread_detach(philo.thread_p[i++]);
-	if (ft_watchdog(&philo.death))
-		ft_philo_destructor(&philo);
+	if (philo.nb_to_eat == -1 && ft_watchdog(&philo.death))
+		i = 0;
+	ft_philo_destructor(&philo);
 	return (0);
 }
