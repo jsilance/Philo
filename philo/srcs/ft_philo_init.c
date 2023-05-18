@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 02:32:58 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/04 00:16:40 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:08:16 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_philo_param_init(t_philo_param *philo, char **argv, int argc)
 	if (first_layer_check(argc) == -1 || second_layer_check(argc, argv) == -1)
 		return (-1);
 	*philo = (t_philo_param){ft_atoi(argv[1]), ft_atoi(argv[2]),
-		ft_atoi(argv[3]), ft_atoi(argv[4]), -1, NULL, NULL, {{0}}, 0};
+		ft_atoi(argv[3]), ft_atoi(argv[4]), -1, NULL, NULL, {0}, 0};
 	if (argc == 6)
 		philo->nb_to_eat = ft_atoi(argv[5]);
 	if (philo->nb_philo < 1)

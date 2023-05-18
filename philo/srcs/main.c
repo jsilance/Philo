@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:12:48 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/04 00:38:21 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:37:12 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		if (pthread_create(&philo.thread_p[i], NULL, ft_philosophe,
 				(void *)&philo.philos[i]))
 			break ;
-		usleep(philo.nb_philo * 1000);
+		ft_sleep(philo.time_to_eat + 1);
 	}
 	i = 0;
 	while (i < philo.nb_philo && philo.nb_to_eat != -1)

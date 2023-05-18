@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/03 00:32:27 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:49:35 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ t_philo				*ft_philo_create(t_philo_param *philo_param);
 int					ft_philo_destructor(t_philo_param *ptr);
 
 int					ft_watchdog(int *ptr);
+
+void	ft_sleep(int ms);
 
 #endif

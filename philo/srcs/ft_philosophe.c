@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philosophe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:23:03 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/04 00:14:55 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:59:26 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 static unsigned long	ft_time_to_ms(struct timeval data)
 {
 	return ((data.tv_sec * 1000000 + data.tv_usec) / 1000);
+}
+
+void	ft_sleep(int ms)
+{
+	struct timeval	start;
+	struct timeval	current;
+
+	gettimeofday(&start, NULL);
+	gettimeofday(&current, NULL);
+	while ((ft_time_to_ms(current) - ft_time_to_ms(start)) < (unsigned long)ms)
+		gettimeofday(&current, NULL);
 }
 
 static int	ft_time_passed(struct timeval start, struct timeval end)
@@ -31,9 +42,9 @@ static int	philo_eat(t_philo *philo, struct timeval *last_eat,
 	pthread_mutex_lock(philo->printing);
 	printf("%ld %d is eating\n", ft_time_to_ms(*end), philo->id);
 	pthread_mutex_unlock(philo->printing);
-	usleep(philo->time_to_eat * 1000);
-	pthread_mutex_unlock(&philo->left_fork);
+	ft_sleep(philo->time_to_eat);
 	pthread_mutex_unlock(right_fork);
+	pthread_mutex_unlock(&philo->left_fork);
 	gettimeofday(last_eat, NULL);
 	return (0);
 }
@@ -46,7 +57,7 @@ static int	philo_sleep(t_philo *philo, struct timeval *end)
 	pthread_mutex_lock(philo->printing);
 	printf("%ld %d is sleeping\n", ft_time_to_ms(*end), philo->id);
 	pthread_mutex_unlock(philo->printing);
-	usleep(philo->time_to_sleep * 1000);
+	ft_sleep(philo->time_to_sleep);
 	return (0);
 }
 
