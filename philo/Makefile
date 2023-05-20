@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+         #
+#    By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 21:01:16 by jusilanc          #+#    #+#              #
-#    Updated: 2023/05/02 23:52:04 by jusilanc         ###   ########.fr        #
+#    Updated: 2023/05/20 13:44:28 by jusilanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRCS = main.c ft_philo_init.c ft_atoi.c ft_isdigit.c ft_philosophe.c ft_philosophe_utils.c \
+		ft_philo_eat.c ft_philo_sleep.c ft_philo_think.c \
 
 SRC = $(addprefix srcs/, $(SRCS))
 

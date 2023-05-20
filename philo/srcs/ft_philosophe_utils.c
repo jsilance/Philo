@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/19 19:02:01 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/20 08:01:12 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 	while (i < philo_param->nb_philo)
 	{
 		pthread_mutex_init(&ptr[i].left_fork, NULL);
+		// printf("%d creating fork %p\n", i + 1, &ptr[i].left_fork);
 		ptr[i].id = i + 1;
 		ptr[i].time_to_die = philo_param->time_to_die;
 		ptr[i].time_to_eat = philo_param->time_to_eat;

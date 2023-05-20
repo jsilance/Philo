@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/19 16:39:55 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/20 13:47:22 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,15 @@ t_philo				*ft_philo_create(t_philo_param *philo_param);
 int					ft_philo_destructor(t_philo_param *ptr);
 
 void				ft_sleep(int ms);
+unsigned long		ft_time_to_ms(struct timeval data);
+void				ft_mut_print(int id, char *action,
+						pthread_mutex_t *mut_print);
+int					ft_is_dead(pthread_mutex_t *mut_dead, int *death);
+
+int					philo_eat(t_philo *philo, struct timeval *last_eat,
+						pthread_mutex_t *right_fork, int *right_fork_available);
+int					philo_sleep(t_philo *philo);
+int					philo_thinking(t_philo *philo, int *thinking,
+						pthread_mutex_t *right_fork, int *right_fork_available);
 
 #endif
