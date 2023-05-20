@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philosophe_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/02 23:59:50 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:02:01 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	ft_philo_destructor(t_philo_param *ptr)
 	int	i;
 
 	i = 0;
+	ft_sleep(100);
 	while (ptr->philos && ptr->philos[i].id)
 		pthread_mutex_destroy(&ptr->philos[i++].left_fork);
-	if (ptr->philos)
-		pthread_mutex_destroy(&ptr->philos[i++].left_fork);
 	pthread_mutex_destroy(&ptr->printing);
+	pthread_mutex_destroy(&ptr->mut_dead);
 	free(ptr->philos);
 	free(ptr->thread_p);
 	return (0);
@@ -46,7 +46,9 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 		ptr[i].nb_to_eat = philo_param->nb_to_eat;
 		ptr[i].philos = philo_param->philos;
 		ptr[i].printing = &philo_param->printing;
+		ptr[i].mut_dead = &philo_param->mut_dead;
 		ptr[i].death = &philo_param->death;
+		ptr[i].fork_available = 1;
 		i++;
 	}
 	ptr[i].id = 0;

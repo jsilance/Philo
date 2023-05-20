@@ -6,21 +6,28 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:12:48 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/18 15:37:12 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/20 02:32:40 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-int	ft_watchdog(int *ptr)
+static int	ft_watchdog(t_philo_param *philo)
 {
+	int	ret;
+
+	ret = 0;
 	while (1)
 	{
-		if (*ptr == 1)
-			return (1);
+		pthread_mutex_lock(&philo->mut_dead);
+		if (philo->death == 1)
+			ret = 1;
+		pthread_mutex_unlock(&philo->mut_dead);
+		if (ret == 1)
+			break ;
 		usleep(100);
 	}
-	return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -39,14 +46,14 @@ int	main(int argc, char **argv)
 		if (pthread_create(&philo.thread_p[i], NULL, ft_philosophe,
 				(void *)&philo.philos[i]))
 			break ;
-		ft_sleep(philo.time_to_eat + 1);
+		// ft_sleep(1);
 	}
 	i = 0;
 	while (i < philo.nb_philo && philo.nb_to_eat != -1)
 		pthread_join(philo.thread_p[i++], NULL);
 	while (i < philo.nb_philo && philo.nb_to_eat == -1)
 		pthread_detach(philo.thread_p[i++]);
-	if (philo.nb_to_eat == -1 && ft_watchdog(&philo.death))
+	if (philo.nb_to_eat == -1 && ft_watchdog(&philo))
 		i = 0;
 	ft_philo_destructor(&philo);
 	return (0);
