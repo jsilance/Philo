@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:12:48 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/20 02:32:40 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:27:03 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 	int				i;
 
 	i = -1;
-	setvbuf(stdout, NULL, _IONBF, 0);
 	if (ft_philo_param_init(&philo, argv, argc) == -1)
 		return (1);
 	philo.philos = ft_philo_create(&philo);
@@ -46,7 +45,6 @@ int	main(int argc, char **argv)
 		if (pthread_create(&philo.thread_p[i], NULL, ft_philosophe,
 				(void *)&philo.philos[i]))
 			break ;
-		// ft_sleep(1);
 	}
 	i = 0;
 	while (i < philo.nb_philo && philo.nb_to_eat != -1)

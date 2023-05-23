@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/20 13:47:22 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:46:57 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 	int				time_to_sleep;
 	int				nb_to_eat;
 	int				id;
+	int				total_fork;
 	pthread_mutex_t	left_fork;
 	int				fork_available;
 	struct s_philo	*philos;
