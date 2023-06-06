@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/06 15:29:56 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:51:55 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int					philo_sleep(t_philo *philo);
 int					philo_thinking(t_philo *philo, int *thinking,
 						pthread_mutex_t *right_fork, int *right_fork_available);
 int					ft_philo_taker(pthread_mutex_t *fork, int *state_of_fork,
+						int *total_fork);
+int					ft_philo_releaser(pthread_mutex_t *fork, int *state_of_fork,
 						int *total_fork);
 
 #endif
