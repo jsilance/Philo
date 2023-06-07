@@ -6,38 +6,38 @@
 #    By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 21:01:16 by jusilanc          #+#    #+#              #
-#    Updated: 2023/05/20 13:44:28 by jusilanc         ###   ########.fr        #
+#    Updated: 2023/06/07 19:45:20 by jusilanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRCS = main.c ft_philo_init.c ft_atoi.c ft_isdigit.c ft_philosophe.c ft_philosophe_utils.c \
-		ft_philo_eat.c ft_philo_sleep.c ft_philo_think.c \
+		ft_philo_eat.c ft_philo_sleep.c ft_philo_think.c philo_death_part.c \
 
 SRC = $(addprefix srcs/, $(SRCS))
 
-CFLAGS = -Wall -Wextra -Werror -I includes/ -g3 -fsanitize=address
-#
+CFLAGS = -Wall -Wextra -Werror -I includes/
+
 LDFLAGS = -pthread
 
 OBJ = ${SRC:.c=.o}
 
 ${NAME}: ${OBJ}
-		@gcc ${CFLAGS} ${OBJ} ${LDFLAGS} -o ${NAME}
+		gcc ${CFLAGS} ${OBJ} ${LDFLAGS} -o ${NAME}
 
 all: ${NAME}
 
 %.o: %.c
-		@cc ${CFLAGS} -c $< -o ${<:.c=.o}
+		cc ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
-		@rm -rf ${OBJ}
+		rm -rf ${OBJ}
 
 fclean: clean
-		@rm -rf ${NAME}
+		rm -rf ${NAME}
 
 re: fclean all
-		@clear
+		clear
 
 .PHONY: all re clean fclean

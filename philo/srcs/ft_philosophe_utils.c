@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/05/23 15:45:46 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:31:51 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 	{
 		pthread_mutex_init(&ptr[i].left_fork, NULL);
 		ptr[i].id = i + 1;
+		ptr[i].nb_philo = philo_param->nb_philo;
 		ptr[i].time_to_die = philo_param->time_to_die;
 		ptr[i].time_to_eat = philo_param->time_to_eat;
 		ptr[i].time_to_sleep = philo_param->time_to_sleep;
@@ -49,8 +50,7 @@ t_philo	*ft_philo_create(t_philo_param *philo_param)
 		ptr[i].mut_dead = &philo_param->mut_dead;
 		ptr[i].death = &philo_param->death;
 		ptr[i].fork_available = 1;
-		ptr[i].total_fork = 0;
-		i++;
+		ptr[i++].total_fork = 0;
 	}
 	ptr[i].id = 0;
 	return (ptr);
