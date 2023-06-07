@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+         #
+#    By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 21:01:16 by jusilanc          #+#    #+#              #
-#    Updated: 2023/06/07 19:45:20 by jusilanc         ###   ########.fr        #
+#    Updated: 2023/06/08 01:35:00 by jusilanc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,5 @@ fclean: clean
 		rm -rf ${NAME}
 
 re: fclean all
-		clear
 
 .PHONY: all re clean fclean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/07 19:38:24 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 01:00:40 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int					ft_atoi(const char *str);
 int					ft_str_isdigit(const char *str);
 int					ft_isdigit(int c);
 void				*ft_philosophe(void *ptr);
-t_philo				*ft_philo_create(t_philo_param *philo_param);
+t_philo				*ft_philo_create(t_philo_param *philo_param, int i);
 
-int					ft_philo_destructor(t_philo_param *ptr);
+int					ft_philo_destructor(t_philo_param *ptr, int ret);
 
 void				ft_sleep(int ms);
 unsigned long		ft_time_to_ms(struct timeval data);

@@ -3,42 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philosophe_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/07 17:31:51 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 01:01:08 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_philo.h"
 
-int	ft_philo_destructor(t_philo_param *ptr)
+int	ft_philo_destructor(t_philo_param *ptr, int ret)
 {
 	int	i;
 
 	i = 0;
 	ft_sleep(100);
 	while (ptr->philos && ptr->philos[i].id)
-		pthread_mutex_destroy(&ptr->philos[i++].left_fork);
-	pthread_mutex_destroy(&ptr->printing);
-	pthread_mutex_destroy(&ptr->mut_dead);
+		if (pthread_mutex_destroy(&ptr->philos[i++].left_fork))
+			ret = 1;
+	if (pthread_mutex_destroy(&ptr->printing))
+		ret = 1;
+	if (pthread_mutex_destroy(&ptr->mut_dead))
+		ret = 1;
 	free(ptr->philos);
 	free(ptr->thread_p);
-	return (0);
+	return (ret);
 }
 
-t_philo	*ft_philo_create(t_philo_param *philo_param)
+t_philo	*ft_philo_create(t_philo_param *philo_param, int i)
 {
 	t_philo	*ptr;
-	int		i;
 
-	i = 0;
 	ptr = (t_philo *)malloc(sizeof(t_philo) * (philo_param->nb_philo + 1));
 	if (!ptr)
 		return (NULL);
 	while (i < philo_param->nb_philo)
 	{
-		pthread_mutex_init(&ptr[i].left_fork, NULL);
+		if (pthread_mutex_init(&ptr[i].left_fork, NULL))
+			return (NULL);
 		ptr[i].id = i + 1;
 		ptr[i].nb_philo = philo_param->nb_philo;
 		ptr[i].time_to_die = philo_param->time_to_die;
