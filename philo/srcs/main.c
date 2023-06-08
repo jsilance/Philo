@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:12:48 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 01:34:26 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:04:39 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	ft_watchdog(t_philo_param *philo)
 	ret = 0;
 	while (1)
 	{
-		pthread_mutex_lock(&philo->mut_dead);
+		if (pthread_mutex_lock(&philo->mut_dead))
+			break ;
 		if (philo->death == 1)
 			ret = 1;
 		pthread_mutex_unlock(&philo->mut_dead);

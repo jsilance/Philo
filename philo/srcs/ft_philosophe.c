@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:23:03 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/07 19:50:10 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:04:08 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ unsigned long	ft_time_to_ms(struct timeval data)
 	return ((data.tv_sec * 1000000 + data.tv_usec) / 1000);
 }
 
-void	ft_mut_print(int id, char *action, pthread_mutex_t *mut_print)
+int	ft_mut_print(int id, char *action, pthread_mutex_t *mut_print)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	pthread_mutex_lock(mut_print);
+	if (pthread_mutex_lock(mut_print) == -1)
+		return (-1);
 	printf("%ld %d %s\n", ft_time_to_ms(time), id, action);
-	pthread_mutex_unlock(mut_print);
+	if (pthread_mutex_unlock(mut_print) == -1)
+		return (-1);
+	return (0);
 }
 
 int	ft_time_passed(struct timeval start, struct timeval end)

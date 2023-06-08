@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:42:42 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/07 19:02:19 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:43:45 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	ft_sleep(int ms)
 
 int	philo_sleep(t_philo *philo, int *state)
 {
-	if (ft_is_dead(philo->mut_dead, philo->death))
+	if (ft_is_dead(philo->mut_dead, philo->death)
+		|| ft_mut_print(philo->id, "is sleeping", philo->printing))
 		return (-1);
-	ft_mut_print(philo->id, "is sleeping", philo->printing);
 	ft_sleep(philo->time_to_sleep);
 	*state = THINKING;
 	return (0);

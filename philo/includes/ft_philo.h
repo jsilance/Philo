@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 01:00:40 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:10:05 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int					ft_philo_destructor(t_philo_param *ptr, int ret);
 
 void				ft_sleep(int ms);
 unsigned long		ft_time_to_ms(struct timeval data);
-void				ft_mut_print(int id, char *action,
+int					ft_mut_print(int id, char *action,
 						pthread_mutex_t *mut_print);
 int					ft_is_dead(pthread_mutex_t *mut_dead, int *death);
 
