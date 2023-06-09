@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:42:42 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 18:48:07 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:14:07 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_sleep(int ms)
 	gettimeofday(&start, NULL);
 	gettimeofday(&current, NULL);
 	while ((ft_time_to_ms(current) - ft_time_to_ms(start)) < (unsigned long)ms)
+	{
+		usleep(50);
 		gettimeofday(&current, NULL);
+	}
 }
 
 int	philo_sleep(t_philo *philo, int *state)
