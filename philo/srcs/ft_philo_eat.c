@@ -6,7 +6,7 @@
 /*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:39:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 17:01:33 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/09 14:34:55 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	philo_eat(t_philo *philo, struct timeval *last_eat,
 	if (ft_mut_print(philo->id, "is eating", philo->printing) == -1)
 		return (-1);
 	gettimeofday(last_eat, NULL);
-	ft_sleep(philo->time_to_eat);
+	ft_sleep(philo->time_to_eat); // verifier durant le sleep si le philo meurt
 	ft_philo_releaser(right_fork, right_fork_available, &philo->total_fork);
 	ft_philo_releaser(&philo->left_fork, &philo->fork_available,
 		&philo->total_fork);
