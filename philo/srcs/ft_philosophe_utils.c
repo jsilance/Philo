@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philosophe_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.s19.be>         +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 22:50:55 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 01:01:08 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:49:02 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_philo_destructor(t_philo_param *ptr, int ret)
 	int	i;
 
 	i = 0;
-	ft_sleep(100);
 	while (ptr->philos && ptr->philos[i].id)
 		if (pthread_mutex_destroy(&ptr->philos[i++].left_fork))
 			ret = 1;

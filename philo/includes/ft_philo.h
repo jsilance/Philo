@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:13:23 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 11:10:05 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:43:10 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,14 @@ t_philo				*ft_philo_create(t_philo_param *philo_param, int i);
 
 int					ft_philo_destructor(t_philo_param *ptr, int ret);
 
-void				ft_sleep(int ms);
+void				ft_sleep(int ms, t_philo_state *p);
 unsigned long		ft_time_to_ms(struct timeval data);
 int					ft_mut_print(int id, char *action,
 						pthread_mutex_t *mut_print);
 int					ft_is_dead(pthread_mutex_t *mut_dead, int *death);
 
-int					philo_eat(t_philo *philo, struct timeval *last_eat,
-						pthread_mutex_t *right_fork, int *right_fork_available);
-int					philo_sleep(t_philo *philo, int *state);
+int					philo_eat(t_philo_state *p);
+int					philo_sleep(t_philo_state *p);
 int					philo_thinking(t_philo *philo, int *thinking,
 						pthread_mutex_t *right_fork, int *right_fork_available);
 int					ft_philo_taker(pthread_mutex_t *fork, int *state_of_fork,
@@ -96,8 +95,7 @@ int					ft_philo_releaser(pthread_mutex_t *fork, int *state_of_fork,
 						int *total_fork);
 
 int					thinking_part(t_philo_state *p);
-int					eating_part(t_philo *philo, struct timeval *last_eat,
-						t_philo *right_philo, int *state);
+int					eating_part(t_philo_state *p);
 int					ft_is_dead(pthread_mutex_t *mut_dead, int *death);
 int					death_part(t_philo_state *p);
 int					ft_time_passed(struct timeval start, struct timeval end);

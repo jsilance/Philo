@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philosophe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusilanc <jusilanc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jusilanc <jusilanc@s19.be>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:23:03 by jusilanc          #+#    #+#             */
-/*   Updated: 2023/06/08 18:19:02 by jusilanc         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:49:18 by jusilanc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	philo_state_init(t_philo_state *p)
 	p->thinking = 1;
 	p->state = THINKING;
 	if (p->philo->id % 2)
-		ft_sleep(p->philo->time_to_eat + p->philo->id * 2);
+		ft_sleep(p->philo->time_to_eat, p);
 	if (p->philo->id + 1 > p->philo->nb_philo)
 		p->right_philo = &p->philo->philos[0];
 	else
@@ -58,10 +58,9 @@ void	*ft_philosophe(void *ptr)
 	{
 		if (ft_is_dead(p.philo->mut_dead, p.philo->death))
 			break ;
-		if (p.state == EAT && eating_part(p.philo, &p.last_eat, p.right_philo,
-				&p.state))
+		if (p.state == EAT && eating_part(&p))
 			break ;
-		else if (p.state == SLEEP && philo_sleep(p.philo, &p.state))
+		else if (p.state == SLEEP && philo_sleep(&p))
 			break ;
 		else if (p.state == THINKING && thinking_part(&p))
 			break ;
